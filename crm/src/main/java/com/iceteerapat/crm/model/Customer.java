@@ -39,7 +39,7 @@ public class Customer {
 
     private CustStatus custStatus;
 
-    private String imageCust;
+    private String imageProfile;
 
     private String email;
 

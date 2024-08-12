@@ -8,23 +8,22 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.Collection;
-import java.util.List;
+
 
 @Service
 @Transactional
 @RequiredArgsConstructor
 @Slf4j
 public class CustomerServiceImpl implements CustomerService{
-
     private final CustomerRepository custRepo;
 
     @Override
     public Customer create(Customer customer) {
         log.info("Create New Customer: {}", customer.getName());
-        customer.setImageCust(imageCustomer());
+        customer.setImageProfile(defaultImage());
         return custRepo.save(customer);
     }
 
@@ -33,12 +32,12 @@ public class CustomerServiceImpl implements CustomerService{
         log.info("Fetching all customer by id: {}", id);
         return custRepo.findById(id).get();
     }
+
     @Override
     public Customer update(Customer customer) {
         log.info("Updating the customer: {}", customer.getName());
         return custRepo.save(customer);
     }
-
     @Override
     public Boolean delete(Long id) {
         log.info("Deleting the customer: {}", id);
@@ -64,7 +63,16 @@ public class CustomerServiceImpl implements CustomerService{
         return custRepo.findByCustCodeContainingIgnoreCase(custCode);
     }
 
-    private String imageCustomer(){
-        return null;
+    @Override
+    public Customer updateProfilePicture(String custCode, String imageProfile) {
+        log.info("Updating the profile picture of the customer: {}", custCode);
+        Customer customer = custRepo.findByCustCodeAndImageProfile(custCode);
+        customer.setImageProfile(imageProfile);
+        return custRepo.save(customer);
+    }
+
+    private String defaultImage(){
+        String[] icon = {"CustIcon.jpe"};
+        return ServletUriComponentsBuilder.fromCurrentContextPath().path("/image/" + icon).toUriString();
     }
 }

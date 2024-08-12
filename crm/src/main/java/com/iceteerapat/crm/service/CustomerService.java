@@ -12,5 +12,5 @@ public interface CustomerService {
     Collection<Customer> list(int limit);
     Customer searchById(Long id);
     Collection<Customer> searchByCustCode(String custCode);
-
+    Customer updateProfilePicture(String custCode, String imageProfile);
 }
