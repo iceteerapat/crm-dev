@@ -11,6 +11,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
+import javax.swing.*;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -26,7 +28,7 @@ public class Customer {
 
     @Column(unique = true)
     @NotEmpty(message = "Please inform your identification number")
-    private Integer id;
+    private Long id;
 
     private String address1;
 
@@ -45,6 +47,9 @@ public class Customer {
     private String dateOfBirth;
 
     @Column(unique = true)
+    @NotEmpty
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer custCode;
+    private String custCode;
+
+
 }

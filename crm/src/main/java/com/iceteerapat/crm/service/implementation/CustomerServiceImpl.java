@@ -1,19 +1,17 @@
 package com.iceteerapat.crm.service.implementation;
 
-import com.iceteerapat.crm.enumuration.CustStatus;
 import com.iceteerapat.crm.model.Customer;
-import com.iceteerapat.crm.repository.Repository;
+import com.iceteerapat.crm.repository.CustomerRepository;
 import com.iceteerapat.crm.service.CustomerService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.net.Inet4Address;
-import java.util.Collection;
 
-import static com.iceteerapat.crm.enumuration.CustStatus.ACTIVE;
-import static com.iceteerapat.crm.enumuration.CustStatus.INACTIVE;
+import java.util.Collection;
+import java.util.List;
 
 @Service
 @Transactional
@@ -21,38 +19,49 @@ import static com.iceteerapat.crm.enumuration.CustStatus.INACTIVE;
 @Slf4j
 public class CustomerServiceImpl implements CustomerService{
 
-    private final Repository repository;
+    private final CustomerRepository custRepo;
 
     @Override
     public Customer create(Customer customer) {
         log.info("Create New Customer: {}", customer.getName());
         customer.setImageCust(imageCustomer());
-        return repository.save(customer);
+        return custRepo.save(customer);
     }
 
     @Override
-    public Customer get(Long uniqueId) {
-        return null;
+    public Customer get(Long id) {
+        log.info("Fetching all customer by id: {}", id);
+        return custRepo.findById(id).get();
     }
-
     @Override
     public Customer update(Customer customer) {
-        return null;
+        log.info("Updating the customer: {}", customer.getName());
+        return custRepo.save(customer);
     }
 
     @Override
-    public Boolean delete(Long uniqueId) {
-        return null;
+    public Boolean delete(Long id) {
+        log.info("Deleting the customer: {}", id);
+        custRepo.deleteById(id);
+        return Boolean.TRUE;
     }
 
     @Override
     public Collection<Customer> list(int limit) {
-        return null;
+        log.info("Fetching all customers:");
+        return custRepo.findAll(PageRequest.of(0,limit)).toList();
     }
 
     @Override
-    public Customer search(Integer id) {
-        return null;
+    public Customer searchById(Long id) {
+        log.info("Searching customer by id: {}", id);
+        return custRepo.findById(id).orElse(null);
+    }
+
+    @Override
+    public Collection<Customer> searchByCustCode(String custCode) {
+        log.info("Searching customer by code containing: {}", custCode);
+        return custRepo.findByCustCodeContainingIgnoreCase(custCode);
     }
 
     private String imageCustomer(){

@@ -6,9 +6,11 @@ import java.util.Collection;
 
 public interface CustomerService {
     Customer create(Customer customer);
-    Customer get(Long uniqueId);
+    Customer get(Long id);
     Customer update(Customer customer);
-    Boolean delete(Long uniqueId);
+    Boolean delete(Long id);
     Collection<Customer> list(int limit);
-    Customer search(Integer id);
+    Customer searchById(Long id);
+    Collection<Customer> searchByCustCode(String custCode);
+
 }
