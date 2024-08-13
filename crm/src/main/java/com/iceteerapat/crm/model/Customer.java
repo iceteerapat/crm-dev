@@ -2,10 +2,11 @@ package com.iceteerapat.crm.model;
 
 import com.iceteerapat.crm.enumuration.CustStatus;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Data
@@ -20,13 +21,12 @@ public class Customer {
 
     private String surName;
 
-    @Column(unique = true)
-    @NotEmpty(message = "Please inform your identification number")
+    @Column(unique = true, nullable = false)
+    @NotNull(message = "Please inform your identification number")
     private Long id;
 
     private String address1;
 
-    @Column(nullable = false)
     private String address2;
 
     private String phoneNo;
@@ -38,11 +38,11 @@ public class Customer {
 
     private String email;
 
-    @NotEmpty(message = "Please inform your Date of Birth")
+    @NotNull(message = "Please inform your Date of Birth")
     private String dateOfBirth;
 
-    @Column(unique = true)
-    @NotEmpty
+    @Column(unique = true, nullable = false)
+    @NotNull
     private String custCode;
 
     public Long getUniqueId() {
