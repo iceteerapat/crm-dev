@@ -66,13 +66,13 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public Customer updateProfilePicture(String custCode, String imageProfile) {
         log.info("Updating the profile picture of the customer: {}", custCode);
-        Customer customer = custRepo.findByCustCodeAndImageProfile(custCode);
+        Customer customer = custRepo.findByCustCodeAndImageProfile(custCode, imageProfile);
         customer.setImageProfile(imageProfile);
         return custRepo.save(customer);
     }
 
     private String defaultImage(){
-        String[] icon = {"CustIcon.jpe"};
-        return ServletUriComponentsBuilder.fromCurrentContextPath().path("/image/" + icon).toUriString();
+        String[] icon = {"CustIcon.jpeg"};
+        return ServletUriComponentsBuilder.fromCurrentContextPath().path("/customer/image/" + icon).toUriString();
     }
 }
