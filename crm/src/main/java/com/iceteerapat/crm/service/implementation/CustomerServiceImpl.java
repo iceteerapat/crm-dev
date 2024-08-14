@@ -58,21 +58,20 @@ public class CustomerServiceImpl implements CustomerService{
     }
 
     @Override
-    public Collection<Customer> searchByCustCode(String custCode) {
-        log.info("Searching customer by code containing: {}", custCode);
-        return custRepo.findByCustCodeContainingIgnoreCase(custCode);
+    public Collection<Customer> searchByAcctNo(String acctNo) {
+        log.info("Searching customer by code containing: {}", acctNo);
+        return custRepo.findByAcctNoContainingIgnoreCase(acctNo);
     }
 
     @Override
-    public Customer updateProfilePicture(String custCode, String imageProfile) {
-        log.info("Updating the profile picture of the customer: {}", custCode);
-        Customer customer = custRepo.findByCustCodeAndImageProfile(custCode, imageProfile);
+    public Customer updateProfilePicture(String acctNo, String imageProfile) {
+        log.info("Updating the profile picture of the account: {}", acctNo);
+        Customer customer = custRepo.findByAcctNoAndImageProfile(acctNo, imageProfile);
         customer.setImageProfile(imageProfile);
         return custRepo.save(customer);
     }
 
     private String defaultImage(){
-        String[] icon = {"CustIcon.jpeg"};
-        return ServletUriComponentsBuilder.fromCurrentContextPath().path("/customer/image/" + icon).toUriString();
+        return ServletUriComponentsBuilder.fromCurrentContextPath().path("/customer/image/CustIcon.jpeg").toUriString();
     }
 }

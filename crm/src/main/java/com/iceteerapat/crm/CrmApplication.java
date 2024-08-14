@@ -27,17 +27,43 @@ public class CrmApplication extends SpringBootServletInitializer {
 		return args -> {
 			customerRepository.save(new Customer(
 					null,
-					"ice",
-					"kongrit",
-					123456789L,
+					"Teerapat",
+					"Kongrit",
+					00001L,
+					"477/455, Jom-Pon, Jatujak, Bangkok ",
+					"10900",
+					"0822195643",
+					ACTIVE,
+					"http://localhost:9090/customer/image/CustIcon.jpeg",
+					"Iceteerapat.k@hotmail.com",
+					"17042021",
+					"AAA001"));
+			customerRepository.save(new Customer(
 					null,
-					null,
-					null,
+					"Priyapat",
+					"Kongrit",
+					00002L,
+					"477/455, Jom-Pon, Jatujak, Bangkok ",
+					"10900",
+					"0994217345",
 					ACTIVE,
 					"http://localhost:9090/customer/image/CustIcon.jpeg",
 					null,
-					"17042021",
-					"AAA001"));
+					"28021996",
+					"AAA002"));
+			customerRepository.save(new Customer(
+					null,
+					"Orawan",
+					"Bunsin",
+					00003L,
+					"90 The viva condo sathorn-taksin",
+					"10900",
+					"0983623922",
+					ACTIVE,
+					"http://localhost:9090/customer/image/CustIcon.jpeg",
+					null,
+					"23072000",
+					"AAA003"));
 		};
 	}
 

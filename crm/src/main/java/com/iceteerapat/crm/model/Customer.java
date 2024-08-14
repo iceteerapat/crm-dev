@@ -43,7 +43,7 @@ public class Customer {
 
     @Column(unique = true, nullable = false)
     @NotNull
-    private String custCode;
+    private String acctNo;
 
     public Long getUniqueId() {
         return uniqueId;
@@ -133,12 +133,12 @@ public class Customer {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getCustCode() {
-        return custCode;
+    public String getacctNo() {
+        return acctNo;
     }
 
-    public void setCustCode(String custCode) {
-        this.custCode = custCode;
+    public void setacctNo(String acctNo) {
+        this.acctNo = acctNo;
     }
 
     @Override
@@ -155,7 +155,7 @@ public class Customer {
                 ", imageProfile='" + imageProfile + '\'' +
                 ", email='" + email + '\'' +
                 ", dateOfBirth='" + dateOfBirth + '\'' +
-                ", custCode='" + custCode + '\'' +
+                ", acctNo='" + acctNo + '\'' +
                 '}';
     }
 }

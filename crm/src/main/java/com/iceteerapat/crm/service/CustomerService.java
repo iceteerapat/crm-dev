@@ -11,6 +11,6 @@ public interface CustomerService {
     Boolean delete(Long id);
     Collection<Customer> list(int limit);
     Customer searchById(Long id);
-    Collection<Customer> searchByCustCode(String custCode);
-    Customer updateProfilePicture(String custCode, String imageProfile);
+    Collection<Customer> searchByAcctNo(String acctNo);
+    Customer updateProfilePicture(String acctNo, String imageProfile);
 }

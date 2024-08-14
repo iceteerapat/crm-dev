@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
-    List<Customer> findByCustCode(String custCode);
-    List<Customer> findByCustCodeContainingIgnoreCase(String custCode);
-    Customer findByCustCodeAndImageProfile (String custCode, String imageProfile);
+    List<Customer> findByAcctNo(String acctNo);
+    List<Customer> findByAcctNoContainingIgnoreCase(String acctNo);
+    Customer findByAcctNoAndImageProfile (String acctNo, String imageProfile);
 }
